@@ -15,10 +15,11 @@ export const Follow = (userId) => ({
   type: "FOLLOW",
   payload: userId,
 });
-export const LOGOUT = () => ({
-  type: "LOGOUT",
-  payload: null,
+export const LogOut = (user) => ({
+  type: "LOG_OUT",
+  payload:user,
 });
+
 export const Unfollow = (userId) => ({
   type: "UNFOLLOW",
   payload: userId,

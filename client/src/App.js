@@ -2,6 +2,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
+import Update from "./pages/update/Update";
 import Messenger from "./pages/messenger/Messenger";
 import {
   BrowserRouter as Router,
@@ -29,6 +30,9 @@ function App() {
         </Route>
         <Route path="/messenger">
           <Messenger />
+        </Route>
+        <Route path="/update">
+          <Update />
         </Route>
       </Switch>
     </Router>

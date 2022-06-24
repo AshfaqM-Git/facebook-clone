@@ -4,20 +4,12 @@ import { Link,Redirect } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router";
-
-import Login from "../../pages/login/Login";
-
+import { logoutCall } from "../../apiCalls";
 export default function Topbar() {
+  
   const history = useHistory();
-  const { user } = useContext(AuthContext);
+  const { dispatch,user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
-  const subHandler = (e)=>{
-    e.preventDefault();
-    
-    
-    
-  };
 
   return (
     <div className="topbarContainer">
@@ -45,17 +37,24 @@ export default function Topbar() {
             <Person />
             <span className="topbarIconBadge">1</span>
           </div>
+          <Link to="/messenger">
           <div className="topbarIconItem">
             <Chat />
             <span className="topbarIconBadge">2</span>
           </div>
+          </Link>
           <div className="topbarIconItem">
             <Notifications />
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
         
-          <button onClick={subHandler} >Log Out</button>
+          <button onClick={(e)=>{
+            e.preventDefault();
+            localStorage.clear();
+            logoutCall({user},dispatch,history);
+            
+          }} >Log Out</button>
         
         <Link to={`/profile/${user.username}`}>
           <img

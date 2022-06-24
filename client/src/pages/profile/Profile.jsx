@@ -1,11 +1,13 @@
 import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
+import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -37,6 +39,7 @@ export default function Profile() {
                 }
                 alt=""
               />
+              
               <img
                 className="profileUserImg"
                 src={
@@ -46,9 +49,12 @@ export default function Profile() {
                 }
                 alt=""
               />
+              
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">{user.username}</h4>
+            
+              <h4 className="profileInfoName">{user.username}<Link to="/update"> Edit
+              </Link></h4>
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>

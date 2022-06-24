@@ -94,3 +94,13 @@
   object-fit: cover;
   cursor: pointer;
 }
+.button {
+  background-color: #4CAF50; /* Green */
+  border-radius: 20px;
+  color: white;
+  border:none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+}
