@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEdit} from 'fontawesome-svg-core'
+import {faEdit} from 'fontawesome-svg-cores'
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
