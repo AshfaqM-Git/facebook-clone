@@ -31,6 +31,7 @@ export default function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
+              <div className="image-related">
               <img
                 className="profileCoverImg"
                 src={
@@ -50,12 +51,17 @@ export default function Profile() {
                 }
                 alt=""
               />
-              
+              </div>
+              <div className="icon-edit" style={{textAlign:'center',position:'relative',zIndex:10,left:'50px'}}>
+                              
+              <Link to="/update" style={{textDecoration:'none'}}> <FontAwesomeIcon icon={faPenToSquare} style={{fontSize:'0.8rem',color:'white'}}/>
+              </Link>
+              </div>
+
             </div>
             <div className="profileInfo">
             
-              <h4 className="profileInfoName">{user.username}<Link to="/update" style={{textDecoration:'none'}}> <FontAwesomeIcon icon={faPenToSquare} style={{fontSize:'0.8rem'}}/>
-              </Link></h4>
+              <h4 className="profileInfoName">{user.username}</h4>
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>
