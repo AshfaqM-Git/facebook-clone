@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEdit} from 'fontawesome-svg-core'
+import {faPenToSquare} from '@fortawesome/free-solid-svg-icons'
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -54,7 +54,7 @@ export default function Profile() {
             </div>
             <div className="profileInfo">
             
-              <h4 className="profileInfoName">{user.username}<Link to="/update"> <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+              <h4 className="profileInfoName">{user.username}<Link to="/update" style={{textDecoration:'none'}}> <FontAwesomeIcon icon={faPenToSquare} style={{fontSize:'0.8rem'}}/>
               </Link></h4>
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
