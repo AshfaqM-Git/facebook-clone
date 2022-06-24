@@ -42,9 +42,21 @@ router.delete("/:id", async (req, res) => {
 });
 
 //get a user
+router.get("/:username", async (req, res) => {
+    console.log("at request : ",req.params.username);
+    try {
+      const searchedResult = await User.find({username:req.params.username});
+      console.log(searchedResult)
+      res.status(200).json(searchedResult);
+    } 
+    catch(err){
+      return res.status(500).json(err);
+    }
+});
 router.get("/", async (req, res) => {
   const userId = req.query.userId;
   const username = req.query.username;
+  console.log("at root directory")
   try {
     const user = userId
       ? await User.findById(userId)
@@ -58,6 +70,7 @@ router.get("/", async (req, res) => {
 
 //get friends
 router.get("/friends/:userId", async (req, res) => {
+  console.log("at friends user");
   try {
     const user = await User.findById(req.params.userId);
     const friends = await Promise.all(
@@ -79,6 +92,7 @@ router.get("/friends/:userId", async (req, res) => {
 //follow a user
 
 router.put("/:id/follow", async (req, res) => {
+  console.log("id/folloe")
   if (req.body.userId !== req.params.id) {
     try {
       const user = await User.findById(req.params.id);
