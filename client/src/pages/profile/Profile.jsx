@@ -7,7 +7,8 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faEdit} from 'fontawesome-svg-core'
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -53,7 +54,7 @@ export default function Profile() {
             </div>
             <div className="profileInfo">
             
-              <h4 className="profileInfoName">{user.username}<Link to="/update"> Edit
+              <h4 className="profileInfoName">{user.username}<Link to="/update"> <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
               </Link></h4>
               <span className="profileInfoDesc">{user.desc}</span>
             </div>

@@ -6,7 +6,11 @@
     align-items: center;
     justify-content: center;
   }
-  
+  #file{
+    border:none;
+    margin-top: 10px;
+
+  }
   .loginWrapper {
     width: 70%;
     height: 70%;
@@ -82,3 +86,4 @@
       font-weight: 500;
       cursor: pointer;
   }
+  
