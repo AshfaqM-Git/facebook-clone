@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-
 //update user
 router.put("/:id", async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -42,6 +41,19 @@ router.delete("/:id", async (req, res) => {
 });
 
 //get a user
+
+router.get("/all/:username",async(req,res)=>{
+  const query = {username:{$regex:new RegExp(`${req.params.username}`),$options: 'i'}};
+  console.log("")
+  try {
+    const searchedResult = await User.find(query);
+    console.log(searchedResult)
+    res.status(200).json(searchedResult);
+  } 
+  catch(err){
+    return res.status(500).json(err);
+  }
+})
 router.get("/:username", async (req, res) => {
     console.log("at request : ",req.params.username);
     try {

@@ -14,21 +14,23 @@ async function startSearching(e) {
   const searchUser = e.target.value;
   console.log(searchUser)
   if (searchUser) {
-    const response = (await axios.get(`/users/${searchUser}`));
+    const response = (await axios.get(`/users/all/${searchUser}`));
     console.log(response, response.data.length > 0);
     if (response.data.length > 0) {
-      document.querySelector('.searchResult').innerHTML = `
-      <a href="/profile/${response.data[0].username}">
-        <div class = "searchedUser">
-          <img src="${(response.data[0].profilePicture) ? (PF + response.data[0].profilePicture) : (PF + 'person/noAvatar.png')}"/>
-          <h2>${response.data[0].username}</h2>
-        <div>
-      </a>
-      `;
+      const allHTMLusers = []
+      for(let i=0;i<response.data.length;i++){
+        allHTMLusers.push( `<a href="/profile/${response.data[i].username}"><div class = "searchedUser"><img src="${(response.data[i].profilePicture) ? (PF + response.data[i].profilePicture) : (PF + 'person/noAvatar.png')}"/><h2>${response.data[i].username}</h2><div></a>`)
+      }
+      console.log(allHTMLusers);
+      document.querySelector('.searchResult').innerHTML =allHTMLusers.join("") ;
+      response.data=[];
     }
     else {
       document.querySelector('.searchResult').innerHTML = ""
     }
+  }
+  else {
+    document.querySelector('.searchResult').innerHTML = ""
   }
 
 }
