@@ -49,11 +49,11 @@ export default function Topbar() {
           </div>
         </div>
         
-          <button onClick={(e)=>{
+          <button className ="logOut" onClick={(e)=>{
             e.preventDefault();
             localStorage.clear();
             logoutCall({user},dispatch,history);
-            
+      
           }} >Log Out</button>
         
         <Link to={`/profile/${user.username}`}>
