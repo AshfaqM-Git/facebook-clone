@@ -7,58 +7,56 @@ import { useHistory } from "react-router";
 import { logoutCall } from "../../apiCalls";
 import { useEffect } from "react";
 import axios from "axios";
+
+const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+async function startSearching(e) {
+  const searchUser = e.target.value;
+  console.log(searchUser)
+  if (searchUser) {
+    const response = (await axios.get(`/users/${searchUser}`));
+    console.log(response, response.data.length > 0);
+    if (response.data.length > 0) {
+      document.querySelector('.searchResult').innerHTML = `
+      <a href="/profile/${response.data[0].username}">
+        <div class = "searchedUser">
+          <img src="${(response.data[0].profilePicture) ? (PF + response.data[0].profilePicture) : (PF + 'person/noAvatar.png')}"/>
+          <h2>${response.data[0].username}</h2>
+        <div>
+      </a>
+      `;
+    }
+    else {
+      document.querySelector('.searchResult').innerHTML = ""
+    }
+  }
+
+}
 export default function Topbar() {
 
   const history = useHistory();
   const { dispatch, user } = useContext(AuthContext);
-  const [getSearchUser, setSearchUser] = useState();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  let [getSearchUsers,setSearchUsers] = useState([]);
-  // let getSearchUsers  = []
-  useEffect(async () => {
-    if (getSearchUser) {
-      const response = (await axios.get(`/users/${getSearchUser}`));
-      if(response.data.length>0){
-        console.log(getSearchUsers.username,response.data[0].username)
-        if(getSearchUsers.username!=response.data[0].username)
-          setSearchUsers(response.data)
-      }
-      console.log(getSearchUsers);
-    }
-  },[getSearchUser,getSearchUsers])
+  let [getSearchUser, setSearchUser] = useState("");
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span className="logo">Lamasocial</span>
         </Link>
+
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
           <Search className="searchIcon" />
           <input
             placeholder="Search for friend, post or video"
-            value={getSearchUser} onChange={(e) => { setSearchUser(e.target.value) }}
+            value={getSearchUser} onChange={(e) => { setSearchUser(e.target.value); startSearching(e) }}
             className="searchInput"
           />
         </div>
-        {
-          (getSearchUser) ? <div>
-            fafdsa
-            {
-              
-              (getSearchUsers.length > 0)? getSearchUsers.map((singleUser, index) => {
-                console.log(singleUser)
-                return (
-                  <div className="search-result-user">
-                    <div> fajhakjf</div>
-                  </div>
-                )
-              }):<div>nothing</div>
-            }
-          </div> :
-            <div></div>
-        }
+        <div className="searchResult">
+        </div>
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
