@@ -7,8 +7,8 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faPenToSquare} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -32,36 +32,33 @@ export default function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <div className="image-related">
-              <img
-                className="profileCoverImg"
-                src={
-                  user.coverPicture
-                    ? PF + user.coverPicture
-                    : PF + "person/noCover.png"
-                }
-                alt=""
-              />
-              
-              <img
-                className="profileUserImg"
-                src={
-                  user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "person/noAvatar.png"
-                }
-                alt=""
-              />
-              </div>
-              <div className="icon-edit" style={{textAlign:'center',position:'relative',zIndex:10,left:'50px'}}>
-                              
-              <Link to="/update" style={{textDecoration:'none'}}> <FontAwesomeIcon icon={faPenToSquare} style={{fontSize:'0.8rem',color:'white'}}/>
-              </Link>
+                <img
+                  className="profileCoverImg"
+                  src={
+                    user.coverPicture
+                      ? PF + user.coverPicture
+                      : PF + "person/noCover.png"
+                  }
+                  alt=""
+                />
+
+                <img
+                  className="profileUserImg"
+                  src={
+                    user.profilePicture
+                      ? PF + user.profilePicture
+                      : PF + "person/noAvatar.png"
+                  }
+                  alt=""
+                />
               </div>
 
             </div>
             <div className="profileInfo">
-            
-              <h4 className="profileInfoName">{user.username}</h4>
+
+              <h4 className="profileInfoName">{user.username}
+                  <Link to="/update" style={{ textDecoration: 'none' }}> <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: '0.9rem' }} />
+                  </Link>              </h4>
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>
