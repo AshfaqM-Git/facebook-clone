@@ -79,14 +79,13 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-
-        <button onClick={(e) => {
-          e.preventDefault();
-          localStorage.clear();
-          logoutCall({ user }, dispatch, history);
-
-        }} >Log Out</button>
-
+        
+          <button className ="logOut" onClick={(e)=>{
+            e.preventDefault();
+            localStorage.clear();
+            logoutCall({user},dispatch,history);
+      
+          }} >Log Out</button>
         <Link to={`/profile/${user.username}`}>
           <img
             src={
